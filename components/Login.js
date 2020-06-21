@@ -36,9 +36,9 @@ export default class Login extends Component {
 
   	login = () =>{
       const { navigation } = this.props;
-      const that = this;
+      //const that = this;
   		const {userEmail,userPassword} = this.state;
-      let reg = /^[_a-z0-9-+]+(\.[_a-z0-9-+]+)*(\+[a-z0-9-]+)?\u0040[a-z0-9-.]+(\.[a-z0-9]+)$/ ;
+      let reg = /^[_A-Za-z0-9-+]+(\.[_A-Za-z0-9-+]+)*(\+[A-Za-z0-9-]+)?\u0040[A-Za-z0-9-.]+(\.[A-Za-z0-9]+)$/ ;
       //let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ;
   		if(userEmail==""){
   			alert("Please enter Email address");
@@ -82,8 +82,9 @@ export default class Login extends Component {
         // let data = responseJson;
         //let error = responseJson.find(obj => obj.error === "false");
         //Jeet Checking Block
-        var check = responseJson.SignupId;
-         console.log(responseJson.error);
+        global.sess = responseJson.SignupId;
+        //console.log(check);
+         console.log(sess);
          //console.log(data);
 // Jeet Checking Block End
       //   console.log(data[1]);
@@ -91,7 +92,8 @@ export default class Login extends Component {
   				 // redirect to profile page
 
   				 alert("Successfully Login");
-           navigation.navigate('Sessions');
+
+           navigation.navigate('Detail', {item: sess});
            //Actions.SignIn()
   				 //that.props.navigation.push("SignIn");
            console.log("passing");

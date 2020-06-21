@@ -10,6 +10,8 @@ import GoToButton from '../components/GoToButton';
 import JitsiLogin from '../components/JitsiLogin';
 import Sessions from '../components/Sessions';
 import JoinWithoutLogin from '../components/JoinWithoutLogin';
+import UpcomingSessions from '../components/UpcomingSessions';
+import Detail from '../components/Detail';
 
 const Stack = createStackNavigator();
 
@@ -20,14 +22,23 @@ function MainStackNavigator() {
       screenOptions={{
         headerShown: false
       }}>
-    <Stack.Screen
-    name='Login'
-    component={Login}
-    options={{title: 'SignIn', headerShown: false}}
-  //  options={({ route }) => ({
-  //          title: route.params.item.room
-  //        })}
-    />
+      <Stack.Screen
+      name='Login'
+      component={Login}
+      options={{title: 'SignIn', headerShown: false}}
+    //  options={({ route }) => ({
+    //          title: route.params.item.room
+    //        })}
+      />
+      <Stack.Screen
+      name='Detail'
+      component={Detail}
+    //options={{title: 'SignIn', headerShown: false}}
+      options={({ route }) => ({
+              title: route.params.item.sessId
+            })}
+      />
+
     <Stack.Screen
     name='Sessions'
     component={Sessions}
@@ -45,6 +56,13 @@ function MainStackNavigator() {
     name='Welcome'
     component={Welcome}
     options={{title: 'SignIn', headerShown: false}}
+    />
+    <Stack.Screen
+    name='UpcomingSessions'
+    component={UpcomingSessions}
+    options={({ route }) => ({
+              title: route.params.item.sessId
+            })}
     />
     <Stack.Screen
     name='JitsiLogin'
